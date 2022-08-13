@@ -19,6 +19,14 @@ describe("Steps", () => {
       result:
         "calc(clamp(0px, -(100vw - 100px) / 10, 10px) + clamp(0px, (100vw - 200px) / 1.667, 30px))",
     },
+    {
+      input: "fluid(10px/100px, 20px/200px, by 120vw)",
+      result: "clamp(10px, (120vw - 100px) / 10, 20px)",
+    },
+    {
+      input: "fluid(10px/100px, 20px/200px, by 120vw)",
+      result: "clamp(10px, (120vw - 100px) / 10, 20px)",
+    },
   ];
 
   for (const { input, result } of testData) {

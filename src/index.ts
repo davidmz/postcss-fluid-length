@@ -31,7 +31,11 @@ const postcssFluidLength = ({
 
       const steps = createSteps(parsed.checkpoints);
       fallback && decl.cloneBefore({ value: fallback.toString() });
-      decl.value = createFormula(steps, byValue, useMinMax);
+      decl.value = createFormula(
+        steps,
+        parsed.variableArg || byValue,
+        useMinMax
+      );
     } catch (e) {
       throw new Error(`Invalid fluid value: ${e}`);
     }
