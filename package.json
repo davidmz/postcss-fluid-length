@@ -1,0 +1,42 @@
+{
+  "name": "postcss-fluid-length",
+  "version": "0.1.0",
+  "description": "PostCSS plugin that creates fluidly interpolated length values",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "fluid"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "vitest",
+    "test-once": "vitest run",
+    "build": "del-cli dist && tsc"
+  },
+  "author": "David Mzareulyan <david@hiero.ru>",
+  "license": "MIT",
+  "homepage": "https://github.com/davidmz/postcss-fluid-length",
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  },
+  "dependencies": {
+    "postcss-value-parser": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "clean-publish": "^4.0.1",
+    "cross-env": "^7.0.3",
+    "del-cli": "^5.0.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4",
+    "vitest": "^0.21.1"
+  }
+}
