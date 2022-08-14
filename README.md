@@ -16,7 +16,7 @@ This line will be transformed to the:
 
 ```css
 font-size: 20px;
-font-size: clamp(16px, (100vw - 400px) / 100, 20px);
+font-size: clamp(16px, 16px + (100vw - 400px) / 100, 20px);
 ```
 
 The first line is a fallback for older browsers, and the second line does all the fluid magic.
