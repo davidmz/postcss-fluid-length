@@ -7,16 +7,16 @@ PostCSS plugin that creates fluidly interpolated length values. You can read abo
 This plugin introduces a new `fluid()` function that allows you to simply enumerate breakpoints and values, like this:
 
 ```css
-font-size: fluid(1rem / 400px, 1.5rem / 800px);
+font-size: fluid(16px / 400px, 20px / 800px);
 ```
 
-This means: I want to have a font size of 1rem for screen widths up to 400px, 1.5rem for widths 800px and wider, and a _linear transition_ in between. So at 600px wide, the font size would be 1.25rem.
+This means: I want to have a font size of 16px for screen widths up to 400px, 20px for widths 800px and wider, and a _linear transition_ in between. So at 600px wide, the font size would be 18px.
 
 This line will be transformed to the:
 
 ```css
-font-size: 1.5rem;
-font-size: clamp(1rem, (100vw - 400px) / 800, 1.5rem);
+font-size: 20px;
+font-size: clamp(16px, (100vw - 400px) / 100, 20px);
 ```
 
 The first line is a fallback for older browsers, and the second line does all the fluid magic.
@@ -24,10 +24,10 @@ The first line is a fallback for older browsers, and the second line does all th
 You can define more breakpoints, for example:
 
 ```css
-font-size: fluid(1rem / 400px, 1.5rem / 600px, 2rem / 1200px);
+font-size: fluid(16px / 400px, 20px / 600px, 24px / 1200px);
 ```
 
-You can use any static (not v\*) length units for breakpoint values/sizes, but the units must be the same for all pairs.
+You can use any static (not v\*) length units for breakpoint values/sizes, but all units must be the same for all pairs.
 
 The full syntax of the fluid function is:
 
@@ -53,3 +53,12 @@ The optional _options_ object has the following optional fields:
 - _byValue_ the default _by_ parameter, defaults to "100vw" if not set;
 - _fallbackBy_ the default fallback method, can be "max-value", "min-value" and "none" (omit fallback), defaults to "max-value" if not set;
 - _useMinMax_ use min() and max() functions instead of clamp() ([for old Safari](https://caniuse.com/css-math-functions)), defaults to _false_ if not set.
+
+## Limitations
+
+There are some limitations, some of them (marked 🤔) will probably be fixed in the future, and some (🙅) probably not.
+
+- 🤔 All units must be the same in all breakpoints;
+- 🤔 You can not use CSS variables in breakpoints;
+- 🙅 You can not use calculations inside the function;
+- 🙅 You can not use the _fluid()_ function inside of other calculation, the _fluid()_ call must be solo in the CSS rule.

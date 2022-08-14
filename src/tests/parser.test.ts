@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { parseValue } from "../parser";
+import { UValue } from "../u-value";
 
 describe("Parser", () => {
   it(`should parse valid syntax`, () => {
@@ -9,12 +10,12 @@ describe("Parser", () => {
       fallback: undefined,
       checkpoints: [
         {
-          test: { value: 100, unit: "px" },
-          result: { value: 10, unit: "px" },
+          test: UValue.parse("100px"),
+          result: UValue.parse("10px"),
         },
         {
-          test: { value: 200, unit: "px" },
-          result: { value: 20, unit: "px" },
+          test: UValue.parse("200px"),
+          result: UValue.parse("20px"),
         },
       ],
     });
@@ -22,23 +23,23 @@ describe("Parser", () => {
 
   it(`should parse complex valid syntax`, () => {
     const result = parseValue(
-      "fluid(10/100px,30  / 300px /* ddd */ , 20 /* ddd *// 200px, by   2234vw)"
+      "fluid(10px/100px,30px  / 300px /* ddd */ , 20px /* ddd *// 200px, by   2234vw)"
     );
     expect(result).toEqual({
       variableArg: "2234vw",
       fallback: undefined,
       checkpoints: [
         {
-          test: { value: 100, unit: "px" },
-          result: { value: 10, unit: "" },
+          test: UValue.parse("100px"),
+          result: UValue.parse("10px"),
         },
         {
-          test: { value: 200, unit: "px" },
-          result: { value: 20, unit: "" },
+          test: UValue.parse("200px"),
+          result: UValue.parse("20px"),
         },
         {
-          test: { value: 300, unit: "px" },
-          result: { value: 30, unit: "" },
+          test: UValue.parse("300px"),
+          result: UValue.parse("30px"),
         },
       ],
     });
@@ -102,6 +103,12 @@ describe("Parser", () => {
     it("different units (2)", () => {
       expect(() =>
         parseValue(`fluid(20px / 200px, 10px / 100pt)`)
+      ).toThrowError(/all test\/result units must be the same/);
+    });
+
+    it("different units (3)", () => {
+      expect(() =>
+        parseValue(`fluid(20pt / 200px, 10pt / 100px)`)
       ).toThrowError(/all test\/result units must be the same/);
     });
 

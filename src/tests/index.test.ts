@@ -4,24 +4,24 @@ import plugin from "..";
 
 describe("PostCSS integration", () => {
   it(`should work`, async () => {
-    const input = "a{ line-height: fluid(10pt/100px,  20pt / 200px) }";
+    const input = "a{ line-height: fluid(10px/100px,  20px / 200px) }";
     const result = await postcss([plugin()]).process(input, {
       from: undefined,
     });
     expect(result.css).toBe(
-      "a{ line-height: 20pt; line-height: clamp(10pt, (100vw - 100px) / 10, 20pt) }"
+      "a{ line-height: 20px; line-height: clamp(10px, (100vw - 100px) / 10, 20px) }"
     );
     expect(result.warnings()).toHaveLength(0);
   });
 
   it(`should work with fallback in function arguments`, async () => {
     const input =
-      "a{ line-height: fluid(10pt/100px,  20pt / 200px, fallback 33pt) }";
+      "a{ line-height: fluid(10px/100px,  20px / 200px, fallback 33px) }";
     const result = await postcss([plugin()]).process(input, {
       from: undefined,
     });
     expect(result.css).toBe(
-      "a{ line-height: 33pt; line-height: clamp(10pt, (100vw - 100px) / 10, 20pt) }"
+      "a{ line-height: 33px; line-height: clamp(10px, (100vw - 100px) / 10, 20px) }"
     );
     expect(result.warnings()).toHaveLength(0);
   });

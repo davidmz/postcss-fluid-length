@@ -1,6 +1,6 @@
 {
   "name": "postcss-fluid-length",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "PostCSS plugin that creates fluidly interpolated length values",
   "keywords": [
     "postcss",

@@ -84,6 +84,7 @@ export function parseValue(value: string): ParseResult {
   }
 
   if (
+    checkpoints[0].result.unit !== checkpoints[0].test.unit ||
     !checkpoints.every(
       (c) =>
         c.test.unit === checkpoints[0].test.unit &&
