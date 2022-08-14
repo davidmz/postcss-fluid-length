@@ -16,6 +16,10 @@ export class UValue {
     return new UValue(parseFloat(u.number), u.unit);
   }
 
+  addValue(add: number) {
+    return new UValue(this.value + add, this.unit);
+  }
+
   toString() {
     return this.value.toString(10) + this.unit;
   }
