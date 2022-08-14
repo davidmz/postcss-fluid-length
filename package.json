@@ -11,10 +11,11 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "vitest",
-    "test-once": "vitest run",
+    "test": "vitest run",
+    "test-live": "vitest",
     "build": "del-cli dist && tsc",
-    "prepack": "run-s test-once build"
+    "prepack": "run-s test build",
+    "prepare": "husky install"
   },
   "author": "David Mzareulyan <david@hiero.ru>",
   "license": "MIT",
@@ -39,6 +40,7 @@
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4",
-    "vitest": "^0.21.1"
+    "vitest": "^0.21.1",
+    "husky": "^8.0.0"
   }
 }
