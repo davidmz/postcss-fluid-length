@@ -11,7 +11,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "vitest run",
+    "test": "eslint . && vitest run",
     "test-live": "vitest",
     "build": "del-cli dist && tsc",
     "prepack": "run-s test build",
