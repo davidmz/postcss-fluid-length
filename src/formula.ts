@@ -8,7 +8,7 @@ export function createFormula(
   useMinMax: boolean
 ): string {
   const sSteps = steps.map(({ k, minResult, maxResult, startPoint }) => {
-    let sign = "";
+    let sign = "+";
     let op = "*";
     if (k < 0) {
       sign = "-";
@@ -21,7 +21,16 @@ export function createFormula(
 
     k = Math.round(k * precision) / precision;
 
-    const formula = `${sign}(${byValue} - ${startPoint.test}) ${op} ${k}`;
+    let pre = `${startPoint.result} ${sign} `;
+    if (startPoint.result.value === 0) {
+      if (sign === "-") {
+        pre = "-";
+      } else {
+        pre = "";
+      }
+    }
+
+    const formula = `${pre}(${byValue} - ${startPoint.test}) ${op} ${k}`;
     if (useMinMax) {
       return `max(${minResult}, min(${formula}, ${maxResult}))`;
     } else {

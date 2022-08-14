@@ -9,7 +9,7 @@ describe("PostCSS integration", () => {
       from: undefined,
     });
     expect(result.css).toBe(
-      "a{ line-height: 20px; line-height: clamp(10px, (100vw - 100px) / 10, 20px) }"
+      "a{ line-height: 20px; line-height: clamp(10px, 10px + (100vw - 100px) / 10, 20px) }"
     );
     expect(result.warnings()).toHaveLength(0);
   });
@@ -21,7 +21,7 @@ describe("PostCSS integration", () => {
       from: undefined,
     });
     expect(result.css).toBe(
-      "a{ line-height: 33px; line-height: clamp(10px, (100vw - 100px) / 10, 20px) }"
+      "a{ line-height: 33px; line-height: clamp(10px, 10px + (100vw - 100px) / 10, 20px) }"
     );
     expect(result.warnings()).toHaveLength(0);
   });
