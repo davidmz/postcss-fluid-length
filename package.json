@@ -20,6 +20,10 @@
   "author": "David Mzareulyan <david@hiero.ru>",
   "license": "MIT",
   "homepage": "https://github.com/davidmz/postcss-fluid-length",
+  "repository": "github:davidmz/postcss-fluid-length",
+  "bugs": {
+    "url": "https://github.com/davidmz/postcss-fluid-length/issues"
+  },
   "peerDependencies": {
     "postcss": "^8.0.0"
   },
